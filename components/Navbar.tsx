@@ -10,9 +10,9 @@ import { useTheme } from '@/lib/ThemeContext';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Services', href: '/features' },
-  { name: 'Portfolio', href: '/projects' },
   { name: 'About', href: '/about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Services', href: '/features' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -62,7 +62,7 @@ export default function Navbar() {
               <Link key={link.name} href={link.href}>
                 <motion.span
                   whileHover={{ scale: 1.05 }}
-                  className="text-sm font-semibold text-black hover:text-primary transition-colors cursor-pointer tracking-tight"
+                  className="text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer tracking-tight"
                 >
                   {link.name}
                 </motion.span>
@@ -83,7 +83,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-black hover:text-primary transition-colors"
+            className="md:hidden text-foreground hover:text-primary transition-colors"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -101,7 +101,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link key={link.name} href={link.href}>
                 <span
-                  className="block py-2 text-black hover:text-primary transition-colors font-semibold"
+                  className="block py-2 text-foreground hover:text-primary transition-colors font-semibold"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}

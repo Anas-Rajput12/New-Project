@@ -37,10 +37,9 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: '𝕏', href: '#', label: 'Twitter' },
-  { icon: '💻', href: '#', label: 'GitHub' },
-  { icon: '💼', href: '#', label: 'LinkedIn' },
-  { icon: '📧', href: '/contact', label: 'Email' },
+  { icon: '💻', href: 'https://github.com/Anas-Rajput12', label: 'GitHub' },
+  { icon: '💼', href: 'https://linkedin.com/in/muhammad-anas-qadri-a7608a2b7/', label: 'LinkedIn' },
+  { icon: '📧', href: 'mailto:muhammadanasqadri2@gmail.com', label: 'Email' },
 ];
 
 export default function Footer() {
@@ -68,7 +67,7 @@ export default function Footer() {
               </motion.div>
             </Link>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs font-medium leading-relaxed">
-              Professional software development company specializing in AI-powered solutions and custom applications.
+              Full-stack developer specializing in AI-powered solutions, modern web applications, and intelligent automation.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (

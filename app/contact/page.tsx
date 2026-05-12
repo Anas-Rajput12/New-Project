@@ -2,36 +2,64 @@
 
 import { useState } from 'react';
 import Footer from '@/components/Footer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Mail, MapPin, Phone, Send, Sparkles } from 'lucide-react';
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Sparkles,
+  ArrowRight,
+} from 'lucide-react';
 
 const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    value: 'hello@coforgedevx.com',
-    link: 'mailto:hello@coforgedevx.com',
+    value: 'muhammadanasqadri2@gmail.com',
+    link: 'mailto:muhammadanasqadri2@gmail.com',
   },
   {
     icon: Phone,
-    title: 'Phone',
-    value: '+1 (555) 123-4567',
-    link: 'tel:+15551234567',
+    title: 'GitHub',
+    value: '@Anas-Rajput12',
+    link: 'https://github.com/Anas-Rajput12',
   },
   {
     icon: MapPin,
-    title: 'Office',
-    value: 'San Francisco, CA',
+    title: 'Location',
+    value: 'Nawabshah, Sindh, Pakistan',
     link: '#',
   },
 ];
 
 const socialLinks = [
-  { icon: '𝕏', name: 'Twitter', handle: '@coforgedevx', link: '#' },
-  { icon: '💻', name: 'GitHub', handle: 'coforge-devx', link: '#' },
-  { icon: '💼', name: 'LinkedIn', handle: 'coforge-devx', link: '#' },
+  {
+    icon: '💻',
+    name: 'GitHub',
+    handle: '@Anas-Rajput12',
+    link: 'https://github.com/Anas-Rajput12',
+  },
+  {
+    icon: '💼',
+    name: 'LinkedIn',
+    handle: 'Muhammad Anas Qadri',
+    link: 'https://linkedin.com/in/muhammad-anas-qadri-a7608a2b7/',
+  },
+  {
+    icon: '📧',
+    name: 'Email',
+    handle: 'muhammadanasqadri2@gmail.com',
+    link: 'mailto:muhammadanasqadri2@gmail.com',
+  },
 ];
 
 export default function ContactPage() {
@@ -45,13 +73,17 @@ export default function ContactPage() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
+
+    console.log('Form Submitted:', formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -60,7 +92,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen">
-
       <main className="pt-24 pb-16">
         {/* Hero Section */}
         <section className="px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -69,11 +100,14 @@ export default function ContactPage() {
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted">Get in Touch</span>
             </div>
+
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Contact <span className="text-gradient">Us</span>
+              Let's Work <span className="text-gradient">Together</span>
             </h1>
+
             <p className="text-xl text-muted max-w-3xl mx-auto">
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              Have a project in mind? I'd love to hear about it. Send me a message and
+              I'll respond as soon as possible.
             </p>
           </div>
         </section>
@@ -85,26 +119,40 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <Card className="glass border-white/20">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Request a Quote</CardTitle>
+                  <CardTitle className="text-2xl">
+                    Start Your Project
+                  </CardTitle>
+
                   <CardDescription>
-                    Tell us about your project and we'll get back to you within 24 hours with a custom quote.
+                    Tell me about your project and I'll get back to you within
+                    24 hours to discuss how I can help.
                   </CardDescription>
                 </CardHeader>
+
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-7">
+                    {/* NAME + EMAIL */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Name *</label>
+                        <label className="block text-sm font-medium mb-3">
+                          Full Name
+                        </label>
+
                         <Input
                           name="name"
                           placeholder="John Doe"
                           value={formData.name}
                           onChange={handleChange}
                           required
+                          className="h-14 rounded-2xl border-border/60 bg-background/40 backdrop-blur-md focus:ring-2 focus:ring-primary/40"
                         />
                       </div>
+
                       <div>
-                        <label className="block text-sm font-medium mb-2">Email *</label>
+                        <label className="block text-sm font-medium mb-3">
+                          Email Address
+                        </label>
+
                         <Input
                           name="email"
                           type="email"
@@ -112,84 +160,113 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           required
+                          className="h-14 rounded-2xl border-border/60 bg-background/40 backdrop-blur-md focus:ring-2 focus:ring-primary/40"
                         />
                       </div>
                     </div>
+
+                    {/* COMPANY + PROJECT */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Company</label>
+                        <label className="block text-sm font-medium mb-3">
+                          Company Name
+                        </label>
+
                         <Input
                           name="company"
                           placeholder="Your Company"
                           value={formData.company}
                           onChange={handleChange}
+                          className="h-14 rounded-2xl border-border/60 bg-background/40 backdrop-blur-md"
                         />
                       </div>
+
                       <div>
-                        <label className="block text-sm font-medium mb-2">Project Type *</label>
+                        <label className="block text-sm font-medium mb-3">
+                          Project Type
+                        </label>
+
                         <select
                           name="projectType"
                           value={formData.projectType}
                           onChange={handleChange}
                           required
-                          className="flex w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                          className="w-full h-14 rounded-2xl border border-border/60 bg-background/40 backdrop-blur-md px-4 text-sm outline-none focus:ring-2 focus:ring-primary/40"
                         >
-                          <option value="">Select type</option>
+                          <option value="">Select Project Type</option>
                           <option value="web">Web Development</option>
                           <option value="mobile">Mobile App</option>
-                          <option value="ai">AI Development</option>
-                          <option value="database">Database Solutions</option>
-                          <option value="fullstack">Full-Stack Application</option>
+                          <option value="ai">AI Solutions</option>
+                          <option value="saas">SaaS Platform</option>
+                          <option value="branding">Branding</option>
                           <option value="other">Other</option>
                         </select>
                       </div>
                     </div>
+
+                    {/* BUDGET + TIMELINE */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Budget Range</label>
+                        <label className="block text-sm font-medium mb-3">
+                          Budget Range
+                        </label>
+
                         <select
                           name="budget"
                           value={formData.budget}
                           onChange={handleChange}
-                          className="flex w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                          className="w-full h-14 rounded-2xl border border-border/60 bg-background/40 backdrop-blur-md px-4 text-sm outline-none focus:ring-2 focus:ring-primary/40"
                         >
-                          <option value="">Select budget</option>
-                          <option value="under5k">Under $5,000</option>
-                          <option value="5k-10k">$5,000 - $10,000</option>
-                          <option value="10k-25k">$10,000 - $25,000</option>
-                          <option value="25k-50k">$25,000 - $50,000</option>
-                          <option value="50k+">$50,000+</option>
+                          <option value="">Select Budget</option>
+                          <option value="5k">Under $5,000</option>
+                          <option value="10k">$5,000 - $10,000</option>
+                          <option value="25k">$10,000 - $25,000</option>
+                          <option value="50k">$25,000 - $50,000</option>
+                          <option value="100k">$50,000+</option>
                         </select>
                       </div>
+
                       <div>
-                        <label className="block text-sm font-medium mb-2">Timeline</label>
+                        <label className="block text-sm font-medium mb-3">
+                          Timeline
+                        </label>
+
                         <select
                           name="timeline"
                           value={formData.timeline}
                           onChange={handleChange}
-                          className="flex w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                          className="w-full h-14 rounded-2xl border border-border/60 bg-background/40 backdrop-blur-md px-4 text-sm outline-none focus:ring-2 focus:ring-primary/40"
                         >
-                          <option value="">Select timeline</option>
-                          <option value="urgent">Urgent (1-2 weeks)</option>
-                          <option value="normal">Normal (1-2 months)</option>
-                          <option value="flexible">Flexible (3+ months)</option>
+                          <option value="">Select Timeline</option>
+                          <option value="urgent">Urgent (1-2 Weeks)</option>
+                          <option value="normal">1-2 Months</option>
+                          <option value="long">3-6 Months</option>
+                          <option value="enterprise">Enterprise Scale</option>
                         </select>
                       </div>
                     </div>
+
+                    {/* MESSAGE */}
                     <div>
-                      <label className="block text-sm font-medium mb-2">Project Description *</label>
+                      <label className="block text-sm font-medium mb-3">
+                        Project Details
+                      </label>
+
                       <textarea
                         name="message"
-                        placeholder="Tell us about your project requirements, goals, and any specific features you need..."
+                        rows={7}
+                        placeholder="Describe your project goals, target audience, features, and expectations..."
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        rows={6}
-                        className="flex w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+                        className="w-full rounded-3xl border border-border/60 bg-background/40 backdrop-blur-md px-5 py-4 text-sm resize-none outline-none focus:ring-2 focus:ring-primary/40 placeholder:text-muted-foreground"
                       />
                     </div>
+
+                    {/* BUTTON */}
+                     {/* Submit Button */}
                     <Button type="submit" size="lg" className="w-full">
-                      <Send className="w-4 h-4" />
+                      <Send className="w-4 h-4 mr-2" />
                       Request Quote
                     </Button>
                   </form>
@@ -197,20 +274,29 @@ export default function ContactPage() {
               </Card>
             </div>
 
-            {/* Contact Info */}
+            {/* RIGHT SIDE */}
             <div className="space-y-6">
+              {/* INFO CARDS */}
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
+
                 return (
-                  <Card key={index} className="glass-hover border-white/10 hover:border-white/20 transition-all">
+                  <Card
+                    key={index}
+                    className="rounded-3xl border border-border/50 bg-background/60 backdrop-blur-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                  >
                     <CardHeader>
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-3">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mb-5 shadow-lg">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
-                      <CardTitle className="text-lg">{info.title}</CardTitle>
+
+                      <CardTitle className="text-xl">
+                        {info.title}
+                      </CardTitle>
+
                       <a
                         href={info.link}
-                        className="text-muted hover:text-primary transition-colors"
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm"
                       >
                         {info.value}
                       </a>
@@ -219,27 +305,42 @@ export default function ContactPage() {
                 );
               })}
 
-              {/* Social Links */}
-              <Card className="glass border-white/20">
+              {/* SOCIALS */}
+              <Card className="rounded-3xl border border-border/50 bg-background/60 backdrop-blur-2xl shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-lg mb-4">Follow Us</CardTitle>
-                  <div className="space-y-3">
+                  <CardTitle className="text-2xl mb-5">
+                    Connect With Us
+                  </CardTitle>
+
+                  <div className="space-y-4">
                     {socialLinks.map((social, index) => (
                       <a
                         key={index}
                         href={social.link}
-                        className="flex items-center gap-3 p-3 rounded-lg glass-hover border border-white/10 hover:border-white/20 transition-all"
+                        className="flex items-center justify-between rounded-2xl border border-border/50 bg-background/40 px-5 py-4 hover:border-primary/40 hover:scale-[1.02] transition-all duration-300"
                       >
-                        <span className="text-xl">{social.icon}</span>
-                        <div>
-                          <div className="text-sm font-medium">{social.name}</div>
-                          <div className="text-xs text-muted">{social.handle}</div>
+                        <div className="flex items-center gap-4">
+                          <div className="text-2xl">{social.icon}</div>
+
+                          <div>
+                            <div className="font-medium">
+                              {social.name}
+                            </div>
+
+                            <div className="text-sm text-muted-foreground">
+                              {social.handle}
+                            </div>
+                          </div>
                         </div>
+
+                        <ArrowRight className="w-4 h-4 text-muted-foreground" />
                       </a>
                     ))}
                   </div>
                 </CardHeader>
               </Card>
+
+              
             </div>
           </div>
         </section>

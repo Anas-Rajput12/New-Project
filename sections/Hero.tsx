@@ -39,7 +39,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 border border-primary/20"
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">Trusted by 30+ clients worldwide</span>
+            <span className="text-sm font-medium text-foreground">AI-Powered Solutions & Full-Stack Development</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -50,11 +50,11 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
           >
             <span className="inline-block">
-              Your Trusted
+              Transforming Ideas
             </span>{' '}
             <br />
             <span className="text-gradient inline-block">
-              Software Development Partner
+              Into Digital Innovation
             </span>
           </motion.h1>
 
@@ -65,7 +65,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            We build custom AI-powered applications, full-stack web platforms, and scalable database solutions that drive business growth.
+            Specialized in AI-powered applications, modern web platforms, and intelligent automation. From voice assistants to e-commerce solutions, I build cutting-edge software that delivers results.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -101,10 +101,10 @@ export default function Hero() {
             transition={{ delay: 0.6 }}
           >
             {[
-              { value: '50+', label: 'Projects Delivered' },
-              { value: '30+', label: 'Happy Clients' },
-              { value: '5+', label: 'Years Experience' },
-              { value: '100%', label: 'On-Time Delivery' },
+              { value: '8+', label: 'Projects Delivered' },
+              { value: '5+', label: 'Technologies' },
+              { value: '2+', label: 'Years Experience' },
+              { value: '100%', label: 'Client Satisfaction' },
             ].map((stat, index) => (
               <motion.div
                 key={index}

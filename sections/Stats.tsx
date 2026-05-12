@@ -7,21 +7,21 @@ import { TrendingUp, Users, Zap, Award } from 'lucide-react';
 const stats = [
   {
     icon: Award,
-    value: '50+',
+    value: '8+',
     label: 'Projects Delivered',
     description: 'Successfully completed',
     gradient: 'from-primary via-accent-yellow to-accent-orange',
   },
   {
     icon: Users,
-    value: '30+',
-    label: 'Happy Clients',
-    description: 'Worldwide partnerships',
+    value: '5+',
+    label: 'Tech Stack',
+    description: 'Modern technologies',
     gradient: 'from-secondary via-accent-pink to-accent-purple',
   },
   {
     icon: TrendingUp,
-    value: '5+',
+    value: '2+',
     label: 'Years Experience',
     description: 'Industry expertise',
     gradient: 'from-accent via-primary to-accent-yellow',
@@ -29,8 +29,8 @@ const stats = [
   {
     icon: Zap,
     value: '100%',
-    label: 'On-Time Delivery',
-    description: 'Commitment to deadlines',
+    label: 'Client Satisfaction',
+    description: 'Quality guaranteed',
     gradient: 'from-accent-orange via-accent-pink to-secondary',
   },
 ];
@@ -46,10 +46,10 @@ export default function Stats() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Trusted by <span className="text-gradient">Businesses Worldwide</span>
+            Delivering <span className="text-gradient">Excellence</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Join 30+ companies who trust CoForge to build their software solutions.
+            Building innovative solutions with cutting-edge technology and proven expertise.
           </p>
         </motion.div>
 

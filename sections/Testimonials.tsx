@@ -6,45 +6,45 @@ import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Chen',
-    role: 'CEO at Fashion Brand XYZ',
-    avatar: '👩‍💻',
-    content: 'CoForge built our entire e-commerce platform in just 8 weeks. The team was professional, responsive, and delivered exactly what we needed. Our online sales increased by 50%!',
+    name: 'Tech Startup Founder',
+    role: 'E-Commerce Platform',
+    avatar: '🚀',
+    content: 'Working with innovative developers who understand modern web technologies and deliver quality solutions on time.',
     rating: 5,
   },
   {
-    name: 'Marcus Rodriguez',
-    role: 'CTO at TechFlow',
-    avatar: '👨‍💼',
-    content: 'We hired CoForge to develop an AI chatbot for customer support. The results exceeded our expectations - 40% reduction in support tickets and customers love it!',
+    name: 'Business Owner',
+    role: 'AI Integration Project',
+    avatar: '💼',
+    content: 'Impressed by the expertise in AI and machine learning. The voice assistant solution exceeded expectations.',
     rating: 5,
   },
   {
-    name: 'Emily Watson',
-    role: 'Founder of StartupLab',
-    avatar: '👩‍🚀',
-    content: 'As a startup founder, I needed a reliable development partner. CoForge delivered our MVP on time and within budget. They truly understand the startup mindset.',
-    rating: 5,
-  },
-  {
-    name: 'David Kim',
-    role: 'Product Manager at CloudScale',
+    name: 'Project Manager',
+    role: 'Full-Stack Development',
     avatar: '👨‍💻',
-    content: 'The custom analytics dashboard CoForge built for us transformed how we make decisions. Real-time data visualization and insights that actually matter.',
+    content: 'Professional approach to development with clean code, modern frameworks, and attention to detail.',
     rating: 5,
   },
   {
-    name: 'Lisa Anderson',
-    role: 'VP Operations at DataSync',
-    avatar: '👩‍💼',
-    content: 'CoForge migrated our entire database infrastructure with zero downtime. Their expertise in database architecture is unmatched. Highly recommended!',
+    name: 'Startup Team',
+    role: 'Web Application',
+    avatar: '🎯',
+    content: 'Great experience working on complex projects. Strong skills in Next.js, React, and database architecture.',
     rating: 5,
   },
   {
-    name: 'James Park',
-    role: 'Director at FinTech Solutions',
-    avatar: '👨‍🔬',
-    content: 'Security and compliance were critical for our fintech app. CoForge delivered a robust, secure solution that passed all audits. True professionals.',
+    name: 'Enterprise Client',
+    role: 'Database Solutions',
+    avatar: '🏢',
+    content: 'Solid understanding of scalable architecture and modern development practices. Reliable and efficient.',
+    rating: 5,
+  },
+  {
+    name: 'Digital Agency',
+    role: 'API Development',
+    avatar: '⚡',
+    content: 'Excellent technical skills combined with good communication. Delivered robust API solutions.',
     rating: 5,
   },
 ];
@@ -63,10 +63,10 @@ export default function Testimonials() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Trusted by <span className="text-gradient">Industry Leaders</span>
+            Client <span className="text-gradient">Success Stories</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            See what our clients are saying about working with CoForge on their projects.
+            Building trust through quality work and professional delivery across diverse projects.
           </p>
         </motion.div>
 

@@ -296,10 +296,10 @@ What would you like to know more about?`;
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary shadow-lg flex items-center justify-center cursor-pointer group"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-r from-primary to-secondary shadow-lg flex items-center justify-center cursor-pointer group"
           >
-            <Bot className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background animate-pulse" />
+            <Bot className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform" />
+            <span className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-green-500 rounded-full border-2 border-background animate-pulse" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -313,10 +313,11 @@ What would you like to know more about?`;
               opacity: 1,
               y: 0,
               scale: 1,
-              height: isMinimized ? 'auto' : '600px'
             }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            className="fixed bottom-6 right-6 z-50 w-[400px] glass border border-white/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[90vw] max-w-[400px] bg-gray-900/95 backdrop-blur-xl border border-gray-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden ${
+              isMinimized ? 'h-auto' : 'h-[420px] md:h-[550px]'
+            }`}
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary to-secondary p-4 flex items-center justify-between">
@@ -352,7 +353,7 @@ What would you like to know more about?`;
             {/* Messages */}
             {!isMinimized && (
               <>
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background/50">
+                <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 bg-gray-800/50 min-h-0">
                   {messages.map((message, index) => (
                     <motion.div
                       key={index}
@@ -361,13 +362,13 @@ What would you like to know more about?`;
                       className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[80%] p-3 rounded-2xl ${
+                        className={`max-w-[85%] md:max-w-[80%] p-2.5 md:p-3 rounded-2xl ${
                           message.role === 'user'
                             ? 'bg-gradient-to-r from-primary to-secondary text-white'
-                            : 'glass border border-white/10'
+                            : 'bg-gray-700/80 border border-gray-600'
                         }`}
                       >
-                        <p className="text-sm whitespace-pre-line">{message.content}</p>
+                        <p className="text-xs md:text-sm whitespace-pre-line leading-relaxed text-gray-100">{message.content}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -378,7 +379,7 @@ What would you like to know more about?`;
                       animate={{ opacity: 1 }}
                       className="flex justify-start"
                     >
-                      <div className="glass border border-white/10 p-3 rounded-2xl">
+                      <div className="bg-gray-700/80 border border-gray-600 p-3 rounded-2xl">
                         <div className="flex gap-1">
                           <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                           <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -393,14 +394,14 @@ What would you like to know more about?`;
 
                 {/* Quick Questions */}
                 {messages.length === 1 && (
-                  <div className="p-4 border-t border-white/10 bg-background/30">
-                    <p className="text-xs text-muted mb-2">Quick questions:</p>
-                    <div className="flex flex-wrap gap-2">
+                  <div className="p-3 md:p-4 border-t border-gray-700 bg-gray-800/30">
+                    <p className="text-xs text-gray-400 mb-2">Quick questions:</p>
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {quickQuestions.map((question, index) => (
                         <button
                           key={index}
                           onClick={() => handleQuickQuestion(question)}
-                          className="text-xs px-3 py-1.5 glass border border-white/10 rounded-full hover:border-primary/50 transition-colors"
+                          className="text-xs px-2.5 md:px-3 py-1.5 bg-gray-700/50 border border-gray-600 rounded-full hover:border-primary/50 transition-colors text-gray-200"
                         >
                           {question}
                         </button>
@@ -410,20 +411,20 @@ What would you like to know more about?`;
                 )}
 
                 {/* Input */}
-                <div className="p-4 border-t border-white/10 bg-background/50">
+                <div className="p-3 md:p-4 border-t border-gray-700 bg-gray-800/50">
                   <div className="flex gap-2">
                     <Input
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                       placeholder="Ask me anything..."
-                      className="flex-1"
+                      className="flex-1 text-sm bg-gray-700/50 border-gray-600"
                     />
-                    <Button onClick={handleSend} size="icon">
+                    <Button onClick={handleSend} size="icon" className="shrink-0">
                       <Send className="w-4 h-4" />
                     </Button>
                   </div>
-                  <p className="text-xs text-muted mt-2 text-center">
+                  <p className="text-xs text-gray-400 mt-2 text-center">
                     Powered by CoForge AI
                   </p>
                 </div>

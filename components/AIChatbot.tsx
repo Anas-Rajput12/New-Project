@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, X, Send, Minimize2, Maximize2 } from 'lucide-react';
+import { MessageCircle, X, Send, Minimize2, Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -258,30 +258,80 @@ What would you like to know more about?`;
     setInput('');
 
     // Add user message
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    const newMessages = [...messages, { role: 'user', content: userMessage }];
+    setMessages(newMessages as any);
 
     // Show typing indicator
     setIsTyping(true);
 
-    // Simulate AI thinking time
-    await new Promise(resolve => setTimeout(resolve, 800));
+    try {
+      // Call the chatbot API with RAG
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          conversationHistory: messages.slice(1), // Exclude initial greeting
+        }),
+      });
 
-    // Get response
-    const response = findBestResponse(userMessage);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('API Error:', errorData);
+        throw new Error(errorData.details || errorData.error || 'Failed to get response from chatbot');
+      }
 
-    setIsTyping(false);
-    setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      const data = await response.json();
+
+      setIsTyping(false);
+      setMessages(prev => [...prev, { role: 'assistant', content: data.message }]);
+    } catch (error) {
+      console.error('Error calling chatbot API:', error);
+      setIsTyping(false);
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: 'Sorry, I encountered an error. Please try again or contact us directly at coforgedevx@gmail.com'
+      }]);
+    }
   };
 
-  const handleQuickQuestion = (question: string) => {
-    setMessages(prev => [...prev, { role: 'user', content: question }]);
+  const handleQuickQuestion = async (question: string) => {
+    const newMessages = [...messages, { role: 'user', content: question }];
+    setMessages(newMessages as any);
     setIsTyping(true);
 
-    setTimeout(() => {
-      const response = findBestResponse(question);
+    try {
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: question,
+          conversationHistory: messages.slice(1),
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('API Error:', errorData);
+        throw new Error(errorData.details || errorData.error || 'Failed to get response from chatbot');
+      }
+
+      const data = await response.json();
+
       setIsTyping(false);
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
-    }, 800);
+      setMessages(prev => [...prev, { role: 'assistant', content: data.message }]);
+    } catch (error) {
+      console.error('Error calling chatbot API:', error);
+      setIsTyping(false);
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: 'Sorry, I encountered an error. Please try again or contact us directly at coforgedevx@gmail.com'
+      }]);
+    }
   };
 
   return (
@@ -293,13 +343,18 @@ What would you like to know more about?`;
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-r from-primary to-secondary shadow-lg flex items-center justify-center cursor-pointer group"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 px-4 py-3 rounded-full bg-gradient-to-r from-primary to-secondary shadow-2xl flex items-center gap-3 cursor-pointer group hover:shadow-primary/50 transition-all"
           >
-            <Bot className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform" />
-            <span className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-green-500 rounded-full border-2 border-background animate-pulse" />
+            <span className="text-white font-semibold text-sm md:text-base whitespace-nowrap">
+              CoForge DevX Chat
+            </span>
+            <div className="relative">
+              <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform" />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-white animate-pulse" />
+            </div>
           </motion.button>
         )}
       </AnimatePresence>
@@ -323,7 +378,7 @@ What would you like to know more about?`;
             <div className="bg-gradient-to-r from-primary to-secondary p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-white" />
+                  <MessageCircle className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">CoForge AI Assistant</h3>
